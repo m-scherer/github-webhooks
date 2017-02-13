@@ -1,7 +1,6 @@
 class CommitsController < ApplicationController
 
   def create
-    byebug
     commit = Commit.new(build_params)
     if commit.save
       render json: "", status: 201
