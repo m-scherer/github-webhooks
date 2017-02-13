@@ -21,6 +21,7 @@ RSpec.describe "/api/v1/commits" do
 
       post '/api/v1/commits', params: data
 
+      expect(response).to be_success
       expect(Commit.count).to eq(1)
       expect(Commit.first.sha).to eq("0d1a26e67d8f")
       expect(Commit.first.message).to eq("Update README.md")
