@@ -12,7 +12,7 @@ class CommitsController < ApplicationController
   private
 
   def commit_params
-    params.require(:head_commit).permit(:id, :message, :timestamp, author: [:username])
+    params.require(:payload).permit(head_commit: [:id, :message, :timestamp, author: [:username]])[:head_commit]
   end
 
   def build_params

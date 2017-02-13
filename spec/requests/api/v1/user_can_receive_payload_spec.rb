@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "/api/v1/commits" do
   context 'POST' do
     it 'gets a payload' do
-      data = {
+      data = { "payload": {
         "head_commit": {
           "id": "0d1a26e67d8f5eaf1f6ba5c57fc3c7d91ac0fd1c",
           "tree_id": "f9d2a07e9488b91af2641b26b9407fe22a451433",
@@ -18,8 +18,9 @@ RSpec.describe "/api/v1/commits" do
           }
         }
       }
+    }
 
-      post '/api/v1/commits', params: data
+      post '/api/v1/commits', params: data.to_json
 
       expect(response).to be_success
       expect(Commit.count).to eq(1)
