@@ -12,7 +12,7 @@ class CommitsController < ApplicationController
   private
 
   def commit_params
-    decoded_params = ActiveSupport::JSON.decode(params)
+    decoded_params = ActionController::Parameters.new(JSON.parse(params.keys.first))
     decoded_params.require(:payload).permit(head_commit: [:id, :message, :timestamp, author: [:username]])[:head_commit]
   end
 
